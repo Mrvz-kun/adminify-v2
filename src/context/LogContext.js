@@ -34,7 +34,6 @@ export const ActivityLogProvider = ({ children }) => {
           message: (
             <span>
               <span className="text-base-content/50">{formattedTimestamp}</span>
-              <br />
               <span className={`ml-4 ${colorClass}`}>{log.action}</span>
             </span>
           ),
