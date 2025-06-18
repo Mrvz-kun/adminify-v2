@@ -23,18 +23,13 @@ export const ActivityLogProvider = ({ children }) => {
           hour12: true,
         });
 
-        let colorClass = 'text-info';
-        if (log.action.toLowerCase().includes('created')) colorClass = 'text-success';
-        else if (log.action.toLowerCase().includes('updated')) colorClass = 'text-info';
-        else if (log.action.toLowerCase().includes('deleted')) colorClass = 'text-warning';
-
         return {
           id: log._id,
           type: log.type,
           message: (
             <span>
               <span className="text-base-content/50">{formattedTimestamp}</span>
-              <span className={`ml-4 ${colorClass}`}>{log.action}</span>
+              <span className={`flex items-end`}>{log.action}</span>
             </span>
           ),
         };

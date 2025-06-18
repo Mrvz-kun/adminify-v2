@@ -8,15 +8,12 @@ export function useAttendance() {
 
   // Fetch all attendance records
   const fetchAttendances = async () => {
-    setLoading(true);
     try {
       const { data } = await axios.get('/api/attendance');
       setAttendances(data);
       setError(null);
     } catch (err) {
       setError(err.message || 'Failed to fetch records');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -56,6 +53,8 @@ export function useAttendance() {
 
   useEffect(() => {
     fetchAttendances();
+    const interval = setInterval(fetchAttendances, 5000); // Poll every 5 seconds
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   return {

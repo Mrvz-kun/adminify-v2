@@ -8,15 +8,12 @@ export function useAFL() {
 
   // Fetch all AFL records
   const fetchAFLs = async () => {
-    setLoading(true);
     try {
       const { data } = await axios.get('/api/AFL');
       setAFLs(data);
       setError(null);
     } catch (err) {
       setError(err.message || 'Failed to fetch records');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -45,19 +42,21 @@ export function useAFL() {
   };
 
   // Delete AFL by publicId
-const deleteAFL = async (publicId) => {
-  try {
-    const response = await axios.delete(`/api/AFL/${publicId}`);
-    console.log('Delete response:', response.status, response.data);
-    setAFLs(prev => prev.filter(att => att.publicId !== publicId));
-  } catch (err) {
-    console.error('Delete error:', err.response?.data || err.message);
-    throw err;
-  }
-};
+  const deleteAFL = async (publicId) => {
+    try {
+      const response = await axios.delete(`/api/AFL/${publicId}`);
+      console.log('Delete response:', response.status, response.data);
+      setAFLs(prev => prev.filter(att => att.publicId !== publicId));
+    } catch (err) {
+      console.error('Delete error:', err.response?.data || err.message);
+      throw err;
+    }
+  };
 
   useEffect(() => {
     fetchAFLs();
+    const interval = setInterval(fetchAFLs, 5000); // Poll every 5 seconds
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   return {
