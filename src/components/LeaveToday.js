@@ -39,7 +39,7 @@ export default function LeaveToday() {
     <>
       <div className="text-center mb-2">
         <p className="text-6xl font-bold text-info">{data.count}</p>
-        <p className="text-xs text-base-content/50 -mt-1">Total On Leave Today</p>
+        <p className="text-xs text-base-content/50 -mt-1">On Leave Today</p>
       </div>
 
       {data.names.length > 0 ? (

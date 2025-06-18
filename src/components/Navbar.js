@@ -21,7 +21,7 @@ export default function Navbar({ activeTab }) {
       {/* Left: Active Tab Label */}
       <div>
         <span className="font-black px-4 py-2 text-xl">
-          Adminfy. v2
+          Adminify. v2
         </span>
       </div>
 

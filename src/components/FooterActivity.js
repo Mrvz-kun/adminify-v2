@@ -31,26 +31,28 @@ export default function FooterActivity() {
       {/* Modal */}
       {modalOpen && (
         <div className="modal modal-open">
-          <div className="modal-box max-h-[80vh] w-10/12 sm:max-w-2xl overflow-y-auto">
-            <h3 className="font-bold text-lg mb-4  pb-4">Activity Log</h3>
+          <div className="modal-box w-10/12 sm:max-w-2xl h-[80vh] flex flex-col">
+            <h3 className="font-bold text-lg mb-4 pb-2">Activity Log</h3>
 
-            {logs.length > 0 ? (
-              <ul className="space-y-3 text-sm">
-                {logs.map((log) => (
-                  <li key={log.id} className="flex items-start gap-2 text-xs">
-                    <div className="relative w-3 h-3 mt-1">
-                      <div className="status animate-ping absolute inset-0"></div>
-                      <div className="status absolute inset-0"></div>
-                    </div>
-                    <div>{log.message}</div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm text-gray-500">No logs found.</p>
-            )}
+            <div className="overflow-y-auto flex-1 pr-1">
+              {logs.length > 0 ? (
+                <ul className="space-y-3 text-sm">
+                  {logs.map((log) => (
+                    <li key={log.id} className="flex items-start gap-2 text-xs">
+                      <div className="relative w-3 h-3 mt-1">
+                        <div className="status animate-ping absolute inset-0"></div>
+                        <div className="status absolute inset-0"></div>
+                      </div>
+                      <div>{log.message}</div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-gray-500">No logs found.</p>
+              )}
+            </div>
 
-            <div className="modal-action mt-4">
+            <div className="modal-action pt-4">
               <button className="btn btn-sm" onClick={() => setModalOpen(false)}>
                 Close
               </button>
@@ -58,6 +60,7 @@ export default function FooterActivity() {
           </div>
         </div>
       )}
+
     </>
   );
 }
