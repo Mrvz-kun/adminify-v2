@@ -12,28 +12,13 @@ export const ActivityLogProvider = ({ children }) => {
       const res = await fetch('/api/logs');
       const data = await res.json();
 
-      const formattedLogs = data.map((log) => {
-        const timestamp = new Date(log.timestamp);
-        const formattedTimestamp = timestamp.toLocaleString('en-US', {
-          month: '2-digit',
-          day: '2-digit',
-          year: 'numeric',
-          hour: 'numeric',
-          minute: '2-digit',
-          hour12: true,
-        });
-
-        return {
-          id: log._id,
-          type: log.type,
-          message: (
-            <span>
-              <span className="text-base-content/50">{formattedTimestamp}</span>
-              <span className={`flex items-end`}>{log.action}</span>
-            </span>
-          ),
-        };
-      });
+      // ✅ Store raw fields instead of JSX
+      const formattedLogs = data.map((log) => ({
+        id: log._id,
+        action: log.action,
+        timestamp: log.timestamp,
+        type: log.type || null,
+      }));
 
       setLogs(formattedLogs);
     } catch (err) {

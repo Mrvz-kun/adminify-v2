@@ -5,17 +5,18 @@ import AFL from '@/models/AFL';
 export async function GET() {
   await dbConnect();
 
-  // Format today as 'YYYY-MM-DD'
   const today = new Date().toISOString().split('T')[0];
 
   try {
-    // Get ALL AFLs (both verified and unverified)
-    const aflRecords = await AFL.find({});
+    // Only fetch AFLs that are NOT marked as "Cancelled"
+    const aflRecords = await AFL.find({
+      remarks: { $ne: 'Cancelled' }
+    });
 
     const onLeaveToday = aflRecords.filter((record) => {
       const dates = Array.isArray(record.inclusiveDate)
         ? record.inclusiveDate
-        : [record.inclusiveDate]; // fallback to single date
+        : [record.inclusiveDate];
 
       return dates.some((d) => {
         if (!d) return false;
@@ -26,7 +27,7 @@ export async function GET() {
 
     const names = onLeaveToday.map((r) => ({
       name: r.name,
-      typeOfLeave: r.typeOfLeave || 'Leave', // fallback if missing
+      typeOfLeave: r.typeOfLeave || 'Leave',
     }));
 
     return NextResponse.json({ count: names.length, names });

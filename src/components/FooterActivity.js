@@ -1,6 +1,10 @@
 'use client';
 import { useActivityLog } from '@/context/LogContext';
 import { useState } from 'react';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 export default function FooterActivity() {
   const { logs } = useActivityLog();
@@ -21,7 +25,9 @@ export default function FooterActivity() {
           </div>
 
           {latestLog ? (
-            <span className="text-xs whitespace-nowrap">{latestLog.message}</span>
+            <span className="text-xs whitespace-nowrap text-base-content/50">
+              {latestLog.action}
+            </span>
           ) : (
             <span className="text-xs text-base-content/50">No recent activity</span>
           )}
@@ -43,7 +49,12 @@ export default function FooterActivity() {
                         <div className="status animate-ping absolute inset-0"></div>
                         <div className="status absolute inset-0"></div>
                       </div>
-                      <div>{log.message}</div>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                        <span>{log.action}</span>
+                        <span className="text-[10px] text-base-content/50 whitespace-nowrap">
+                          · {dayjs(log.timestamp).fromNow()}
+                        </span>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -60,7 +71,6 @@ export default function FooterActivity() {
           </div>
         </div>
       )}
-
     </>
   );
 }

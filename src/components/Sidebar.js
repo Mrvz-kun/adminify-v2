@@ -10,10 +10,11 @@ import {
   BookUserIcon,
   Warehouse,
 } from 'lucide-react'
+import ThemeToggle from '@/components/ThemeToggle'
 
 const sidebarItems = [
   { name: 'Dashboard', icon: <LayoutGrid size={20} />, key: 'dashboard' },
-   { name: 'Attendance', icon: <Users size={20} />, key: 'attendance' },
+  { name: 'Attendance', icon: <Users size={20} />, key: 'attendance' },
   { name: 'Leave Application', icon: <FileUser size={20} />, key: 'leave' },
   { name: 'Staff Directory', icon: <BookUserIcon size={20} />, key: 'directory' },
   { name: 'Supplies Inventory', icon: <Warehouse size={20} />, key: 'inventory' },
@@ -43,10 +44,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             </motion.span>
           )}
         </AnimatePresence>
-        <button
-          className=" "
-          onClick={() => setIsCollapsed(!isCollapsed)}
-        >
+        <button onClick={() => setIsCollapsed(!isCollapsed)}>
           {isCollapsed ? <PanelRightClose size={20} /> : <PanelRightOpen size={20} />}
         </button>
       </div>
@@ -77,6 +75,11 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           </button>
         ))}
       </nav>
+
+      {/* Footer - Theme Toggle */}
+      <div className="ml-2 px-4 py-4 mt-auto">
+        <ThemeToggle />
+      </div>
     </motion.aside>
   )
 }

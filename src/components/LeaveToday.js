@@ -28,7 +28,7 @@ export default function LeaveToday() {
   }, []);
 
   return (
-    <div className="rounded-xl bg-gradient-to-br from-gray-100 to-white shadow-md p-4 min-h-[300px] flex flex-col gap-4">
+    <div className="rounded-xl bg-gradient-to-br from-gray-100 to-white shadow-md p-2 min-h-[300px] flex flex-col gap-2 sm:p-4 md:p-6 lg:p-8">
   <div className="flex items-center justify-between mb-2">
     {loading && <span className="text-xs text-gray-400">Loading...</span>}
   </div>
@@ -39,12 +39,14 @@ export default function LeaveToday() {
     <>
       <div className="text-center mb-2">
         <p className="text-6xl font-bold text-info">{data.count}</p>
-        <p className="text-xs text-base-content/50 -mt-1">On Leave Today</p>
+        <p className="text-xs text-base-content/50 -mt-1">
+          On Leave Today – {new Date().toLocaleDateString('en-PH', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
       </div>
 
       {data.names.length > 0 ? (
         <div className="max-h-32">
-          <ul className="space-y-0.5 text-sm text-gray-700">
+          <ul className="space-y-0.5 text-sm text-base-content">
             {data.names.map((entry, idx) => (
               <li
                 key={idx}

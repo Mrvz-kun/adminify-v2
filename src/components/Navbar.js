@@ -1,19 +1,46 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 import useAuth from '@/hooks/useAuth'; 
-import Image from 'next/image'; 
-
-const tabLabels = {
-  dashboard: 'Dashboard',
-  attendance: 'Attendance',
-  leave: 'Leave Application',
-  directory: 'Staff Directory',
-};
+import Image from 'next/image';
+import UserProfile from './UserProfile'; 
+import { AnimatePresence } from 'framer-motion';
+import { usersData } from '../../public/data/Users';
 
 export default function Navbar({ activeTab }) {
   const { user, logout } = useAuth();
+  const [showProfile, setShowProfile] = useState(false);
+  const [avatar, setAvatar] = useState('/avatar.webp');
+
+  useEffect(() => {
+    const loadAvatar = () => {
+      if (!user?.username) return;
+
+      const stored = localStorage.getItem(`avatar-${user.username}`);
+      if (stored) {
+        setAvatar(stored);
+      } else {
+        const found = usersData.find(
+          (u) => u.username.toLowerCase() === user.username.toLowerCase()
+        );
+        setAvatar(found?.avatar || '/avatar.webp');
+      }
+    };
+
+    loadAvatar();
+
+    const updateAvatar = () => loadAvatar();
+
+    window.addEventListener('storage', updateAvatar);
+    window.addEventListener('avatar-updated', updateAvatar);
+
+    return () => {
+      window.removeEventListener('storage', updateAvatar);
+      window.removeEventListener('avatar-updated', updateAvatar);
+    };
+  }, [user?.username]);
+
 
   return (
     <>
@@ -32,9 +59,11 @@ export default function Navbar({ activeTab }) {
             <span className="font-medium">Hello, </span>{' '}
             <span className="font-bold">{user.username}</span>
             <div className="avatar px-4">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden hover:cursor-pointer">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden hover:cursor-pointer"
+                onClick={() => setShowProfile(true)}
+                >
                 <Image
-                  src={user.avatar || '/avatar.webp'}
+                  src={avatar || '/avatar.webp'}
                   alt="User Avatar"
                   fill
                   className="object-cover"
@@ -50,9 +79,12 @@ export default function Navbar({ activeTab }) {
         )}
       </div>
     </nav>
-    <div className="fixed bottom-16 right-6 z-50">
-      <ThemeToggle />
-    </div>
+      
+    <AnimatePresence>
+      {showProfile && (
+        <UserProfile onClose={() => setShowProfile(false)} />
+      )}
+    </AnimatePresence>
     </>
   );
 }
