@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { staffData } from "../../public/data/DropdownData";
+import { staffData } from "../../../public/data/DropdownData";
 import { toast, Zoom, ToastContainer } from "react-toastify";
 import useAuth from '@/hooks/useAuth';
 import { useActivityLog } from '@/context/LogContext';

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { staffData, activityData } from "../../public/data/DropdownData";
+import { staffData, activityData } from "../../../public/data/DropdownData";
 import { useAFL } from "@/hooks/useAFL";
-import UnverifiedAFLTable from "./UnverifiedAFLTable";
+import UnverifiedAFLTable from "@/components/afl/UnverifiedAFLTable";
 
 import useAuth from '@/hooks/useAuth';
 import { useActivityLog } from '@/context/LogContext';
-import { ToastContainer } from "react-toastify";
 
 import { SquarePen, Trash2, CircleX, ChevronsLeft, ChevronsRight } from "lucide-react";
 
@@ -158,9 +157,6 @@ const handleAFLSelect = async (selectedId) => {
 
   return (
     <>
-    
-      {/* Toast container to render all toasts */}
-      <ToastContainer position="top-right" autoClose={5000} />
 
       {/* Top Row: Search Left, Info + Pagination Right */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 mt-10">

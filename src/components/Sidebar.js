@@ -16,7 +16,7 @@ const sidebarItems = [
   { name: 'Dashboard', icon: <LayoutGrid size={20} />, key: 'dashboard' },
   { name: 'Attendance', icon: <Users size={20} />, key: 'attendance' },
   { name: 'Leave Application', icon: <FileUser size={20} />, key: 'leave' },
-  { name: 'Staff Directory', icon: <BookUserIcon size={20} />, key: 'directory' },
+  /*{ name: 'Staff Directory', icon: <BookUserIcon size={20} />, key: 'directory' },*/
   { name: 'Supplies Inventory', icon: <Warehouse size={20} />, key: 'inventory' },
 ]
 

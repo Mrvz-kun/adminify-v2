@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAFL } from "../hooks/useAFL";
+import { useAFL } from "../../hooks/useAFL";
 
 
 export default function UnverifiedAFLTable({ AFLs, loading, error, onSelectAFL, currentRecord }) {

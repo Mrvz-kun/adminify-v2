@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Zoom, toast } from 'react-toastify';
 import useAuth from '@/hooks/useAuth';
 import { useActivityLog } from '@/context/LogContext';
-import { staffData, leaveData, rpmoReceiverData} from "../../public/data/DropdownData";
+import { staffData, leaveData, rpmoReceiverData } from "../../../public/data/DropdownData";
 import AFLTable from "./AFLTable";
 import { useAFL } from "@/hooks/useAFL";
 import { Pencil } from "lucide-react";
@@ -103,7 +103,7 @@ export default function AFLPage() {
 
       toast("Record successfully created!", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
@@ -123,7 +123,7 @@ export default function AFLPage() {
         console.error("Submit failed:", err);
         toast("Failed to save record. Please try again.", {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,

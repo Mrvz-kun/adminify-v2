@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { staffData, activityData } from "../../public/data/DropdownData";
+import { staffData, activityData } from "../../../public/data/DropdownData";
 import { useAttendance } from "@/hooks/useAttendance";
-import AttendanceTable from "./AttendanceTable";
+import AttendanceTable from "../attendance/AttendanceTable";
 import { Zoom, toast } from 'react-toastify';
 import { Pencil, Printer } from "lucide-react";
 import useAuth from '@/hooks/useAuth';
@@ -105,7 +105,7 @@ export default function AttendancePage({ setActiveTab }) {
       const newRecord = await createAttendance(dataToSend);
       toast("Record successfully created!", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
@@ -126,7 +126,7 @@ export default function AttendancePage({ setActiveTab }) {
       console.error("Submit failed:", err);
       toast("Failed to save record. Please try again.", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { staffData, leaveData, rpmoReceiverData } from "../../public/data/DropdownData";
+import { staffData, leaveData, rpmoReceiverData } from "../../../public/data/DropdownData";
 import {  Ellipsis, ChevronsLeft, ChevronsRight, CircleX} from "lucide-react";
-import { ToastContainer } from "react-toastify";
 import useAuth from '@/hooks/useAuth';
 import { useActivityLog } from '@/context/LogContext';
 
@@ -114,8 +113,6 @@ const filtered = AFLs.filter((afl) => {
 
   return (
     <>
-      {/* Toast container to render all toasts */}
-      <ToastContainer position="top-right" autoClose={5000} />
       
       {/* Top Row: Search Left, Info + Pagination Right */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 mt-10">
@@ -247,7 +244,7 @@ const filtered = AFLs.filter((afl) => {
                         tabIndex={0}
                         className="dropdown-content menu bg-base-100 rounded-box z-[1000] absolute top-full right-0 w-24 p-2 shadow-sm text-sm"
                       >
-                        <li className="text-xs"><a onClick={() => openEditModal(afl)}>View/Edit</a></li>
+                        <li className=""><a onClick={() => openEditModal(afl)}>View/Edit</a></li>
                         <li>
                           <a
                             onClick={() => {

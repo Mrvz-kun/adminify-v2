@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import ThemeToggle from '@/components/ThemeToggle';
 import { Eye, EyeOff } from 'lucide-react';
 import { usersData } from '../../../public/data/Users';
 import './page.css';
@@ -56,8 +55,7 @@ useEffect(() => {
   }
 
   return () => clearInterval(interval);
-}, [displaying, quoteIndex]);
-
+}, [displaying, quoteIndex, quotes]); // <-- added `quotes`
 
 
 
@@ -92,9 +90,11 @@ useEffect(() => {
     (user) => user.username === username && user.password === password
     );
 
-    if (matchedUser) {
+  if (matchedUser) {
     localStorage.setItem('loggedInUser', JSON.stringify(matchedUser));
+    localStorage.setItem('lastActivity', Date.now());
     router.push('/admin');
+    
     } else {
     setError({ password: 'Invalid username or password' });
     }
@@ -142,9 +142,7 @@ useEffect(() => {
                 onChange={(e) => setUsername(e.target.value)}
                 className="select select-bordered w-full bg-white/20 text-white backdrop-blur-sm border-white/30 placeholder:text-white/60"
               >
-                <option value="" disabled hidden>
-                  Select a user
-                </option>
+                <option value="" disabled hidden/>
                 {usersData.map((user) => (
                   <option className='bg-white/20 backdrop-blur-md text-black' key={user.id} value={user.username}>
                     {user.username}
@@ -152,7 +150,7 @@ useEffect(() => {
                 ))}
               </select>
               {error.username && (
-                <p className="text-red-400 text-xs mt-1">{error.username}</p>
+                <p className="text-white text-xs mt-1">{error.username}</p>
               )}
             </div>
 

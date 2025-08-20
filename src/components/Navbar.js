@@ -8,6 +8,7 @@ import UserProfile from './UserProfile';
 import { AnimatePresence } from 'framer-motion';
 import { usersData } from '../../public/data/Users';
 
+
 export default function Navbar({ activeTab }) {
   const { user, logout } = useAuth();
   const [showProfile, setShowProfile] = useState(false);
