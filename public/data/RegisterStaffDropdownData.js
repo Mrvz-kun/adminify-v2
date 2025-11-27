@@ -1,0 +1,48 @@
+export const designation = [
+    { id: 1, designationTitle: "Social Welfare Officer IV" },
+    { id: 2, designationTitle: "Social Welfare Officer III" },
+    { id: 3, designationTitle: "Social Welfare Officer II" },
+    { id: 4, designationTitle: "Project Development Officer II" },
+    { id: 5, designationTitle: "Administrative Assistant III" },
+    { id: 6, designationTitle: "Administrative Assistant II" },
+    { id: 7, designationTitle: "Administrative Aide IV" },
+];
+
+export const position = [
+    { id: 1, positionTitle: "Provincial Link" },
+    { id: 2, positionTitle: "Social Welfare Officer III" },
+    { id: 3, positionTitle: "Social Welfare Officer II" },
+    { id: 4, positionTitle: "City/Municipal Link" },
+    { id: 5, positionTitle: "Provincial Grievance Officer" },
+    { id: 6, positionTitle: "Cluster Grievance Officer" },
+    { id: 7, positionTitle: "Cluster Compliance Verification Officer" },
+    { id: 8, positionTitle: "Cluster Beneficiary Data Officer" },
+    { id: 9, positionTitle: "Case Management Focal" },
+    { id: 10, positionTitle: "City/Muncipal Roving Bookkeeper" },
+    { id: 11, positionTitle: "Administrative Assistant II" },
+    { id: 12, positionTitle: "Encoder" },
+];
+
+export const officialStation = [
+    {id: 1, station: "Provincial Operations Office"},
+    {id: 2, station: "Agoo"},
+    {id: 3, station: "Aringay"},
+    {id: 4, station: "Bacnotan"},
+    {id: 5, station: "Bagulin"},
+    {id: 6, station: "Balaoan"},
+    {id: 7, station: "Bangar"},
+    {id: 8, station: "Bauang"},
+    {id: 9, station: "Burgos"},
+    {id: 10, station: "Caba"},
+    {id: 11, station: "Luna"},
+    {id: 12, station: "Naguilian"},
+    {id: 13, station: "Pugo"},
+    {id: 14, station: "Rosario"},
+    {id: 15, station: "San Fernando City"},
+    {id: 16, station: "San Gabriel"},
+    {id: 17, station: "San Juan"},
+    {id: 18, station: "Santo Tomas"},
+    {id: 19, station: "Santol"},
+    {id: 20, station: "Sudipen"},
+    {id: 21, station: "Tubao"},   
+]
